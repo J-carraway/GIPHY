@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   
+
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
 
@@ -15,6 +15,84 @@
 </head>
 
 <body>
+
+
+    <script>
+
+        ///var xhr = $.get("http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=30");
+        //xhr.done(function(data) { console.log("success got data", data); });
+
+
+        $(document).ready(function () {
+
+            var gifs = [" Naruto", "Batman", "Nintendo", "funny", "sad", "Dallas Mavericks",
+                "Dallas Cowboys", "The Office", "Video games", " Puppies", "Sharks", "Donald Trump",
+                "Barack Obama", "Dragon Ball Z", "Bahamas", "Jamiaca", "Hawaii", "Cheerleading", "Mad", "Excited"];
+
+            console.log("HI");
+            
+            var newButton = function () {
+               
+                $("#btn-Section").empty();
+               
+                for (var i = 0; i < gifs.length; i++) {
+                 
+                    var newBtn = $("<button class=btn-danger>");
+               
+                    newBtn.attr("data-type", gifs[i]);
+                 
+                    newBtn.attr("class", "gif btn-danger");
+                   
+                    newBtn.text(gifs[i]);
+                 
+                    $("#btn-Section").append(newBtn);
+
+                }
+            }
+           
+            var submit = function () {
+
+                $("#submit-btn").on("click", function (event) {
+
+                    event.preventDefault();
+                
+                    var Input = $("#userInput").val().trim();
+                  
+                    gifs.push(Input);
+
+                    newButton();
+
+                });
+            }
+            var showGifs = function () {
+                var buttonValue = $(this).data("type");
+                console.log(buttonValue);
+
+            }
+
+
+            newButton();
+            submit();
+            $(document).on("click", "gif", showGifs)
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
 
     <div class="container-fluid">
 
@@ -27,26 +105,30 @@
             <form class="col-md-2">
                 Look up something!
                 <input type="text" id="userInput">
-                 <input type="submit" class="btn-info" id="submit-btn">
+                <input type="submit" class="btn-info" id="submit-btn">
 
             </form>
             <p class="demo"></p>
 
         </div>
 
-        
+        <style>
+            body {
+                background-color: purple;
+            }
 
-<script src="logic.js"></script>
+            #btn-Section {
+                margin: 30px;
+
+            }
+        </style>
+
+
+
+
+
+
+
 </body>
-<style>
 
-body{
-    background-color: purple;
-}
-  #btn-Section{
-      margin:30px;
-      
-  }
-  
-</style>
 </html>
